@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { combine } from "zustand/middleware";
+import { combine, createJSONStorage, persist } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type FilterButtonData = {
   key: string;
@@ -22,40 +23,25 @@ export const filterButtonData: FilterButtonData[] = [
 ];
 
 export const useHomeState = create(
-  combine(
+  persist(
+    combine(
+      {
+        activeKey: "all",
+        searchInput: "",
+      },
+      (set) => ({
+        setActiveKey: (key: string) => {
+          set(() => ({ activeKey: key }));
+        },
+
+        setSearchInput: (value: string) => {
+          set(() => ({ searchInput: value }));
+        },
+      }),
+    ),
     {
-      activeKey: "all",
+      name: "home-storage",
+      storage: createJSONStorage(() => AsyncStorage),
     },
-    (set) => ({
-      setActiveKey: (key: string) => {
-        set(() => ({ activeKey: key }));
-      },
-    }),
-  ),
-);
-
-type File = {
-  mendatoryInput: string;
-  textInput: string;
-  numericInput: number;
-  dateInput: string;
-  fileType: "X" | "Y";
-  status: "open" | "closed";
-};
-
-export const useFileStore = create(
-  combine(
-    {
-      files: [] as File[],
-    },
-    (set, get) => ({
-      addFile: (file: File) => {
-        set((state) => ({ files: [...state.files, file] }));
-      },
-
-      getFileData: (key: string) => {
-        return get().files.filter((file) => file.status === key);
-      },
-    }),
   ),
 );

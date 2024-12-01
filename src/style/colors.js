@@ -2,7 +2,7 @@ module.exports = {
   dark: "#000",
   light: "#fff",
   page: "#F0F0F0",
-  primary: "#09112F",
+  primary: "#2F54EB",
   geekBlue: '#D5DDFB',
   secondary: "#6c757d",
   success: "#28a745",

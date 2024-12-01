@@ -1,54 +1,66 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "@/views/Home";
-import { Detail } from "@/views/Detail";
+import { Profile } from "@/views/Profile";
+import { Detail, TopTabsParams } from "@/views/Detail";
+
+export type RootStackParams = {
+  BottomTabStack: NavigatorScreenParams<BottomTabStackParams>;
+  FileStack: NavigatorScreenParams<FileStackParams>;
+};
 
 type BottomTabStackParams = {
-  HomeStack: HomeStackParams;
+  FileStack: NavigatorScreenParams<FileStackParams>;
   Profile: undefined;
 };
 
-type HomeStackParams = {
-  Home: undefined;
-  Detail: undefined;
+export type FileStackParams = {
+  Search: undefined;
+  Detail: {
+    initialRouteName?: keyof TopTabsParams;
+  };
 };
 
+const RootStack = createNativeStackNavigator<RootStackParams>();
+const FileStack = createNativeStackNavigator<FileStackParams>();
 const BottomTabNavigator = createBottomTabNavigator<BottomTabStackParams>();
 
-const HomeStackNavigator = createNativeStackNavigator<HomeStackParams>();
-
-const HomeStack = () => {
+export const FileStackScreen = () => {
   return (
-    <HomeStackNavigator.Navigator
+    <FileStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <HomeStackNavigator.Screen name="Home" component={Home} />
-      <HomeStackNavigator.Screen name="Detail" component={Detail} />
-    </HomeStackNavigator.Navigator>
+      <FileStack.Screen name="Search" component={Home} />
+      <FileStack.Screen name="Detail" component={Detail} />
+    </FileStack.Navigator>
   );
 };
 
-export const MainStack = () => {
+export const BottomTab = () => {
   return (
     <BottomTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <BottomTabNavigator.Screen name="HomeStack" component={HomeStack} />
-      <BottomTabNavigator.Screen name="Profile" component={Detail} />
+      <BottomTabNavigator.Screen name="FileStack" component={FileStackScreen} />
+      <BottomTabNavigator.Screen name="Profile" component={Profile} />
     </BottomTabNavigator.Navigator>
   );
 };
 
-export const RootStack = () => {
+export const RootStackNavigator = () => {
   return (
-    <NavigationContainer>
-      <MainStack />
-    </NavigationContainer>
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <RootStack.Screen name="BottomTabStack" component={BottomTab} />
+    </RootStack.Navigator>
   );
 };
