@@ -1,0 +1,12 @@
+name: Preview QR
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  call-workflow:
+    name: Call Preview Workflow
+    uses: papyon-apps/gh-actions/.github/workflows/preview.yml@main
+    secrets:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

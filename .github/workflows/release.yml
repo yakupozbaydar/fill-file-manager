@@ -1,0 +1,15 @@
+name: Release App
+
+on:
+    push:
+      branches:
+        - master
+        - main
+
+jobs:
+  call-workflow:
+    name: Call Release Workflow
+    uses: papyon-apps/gh-actions/.github/workflows/release.yml@main
+    secrets:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EXPO_APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.EXPO_APPLE_APP_SPECIFIC_PASSWORD }}

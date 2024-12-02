@@ -44,6 +44,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3c64c9c5-0f2c-459d-9d5b-d95ced9fa7fb"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "nativeVersion"
+    },
+    "owner": "pollux06"
   }
 }

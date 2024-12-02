@@ -1,0 +1,14 @@
+name: IOS Development Build
+on:
+  pull_request:
+    branches:
+      - dev
+
+
+# [need build] is a keyword that will trigger the build
+jobs:
+  call-workflow:
+    name: Call IOS Build Workflow
+    uses: papyon-apps/gh-actions/.github/workflows/build-ios.yml@main
+    secrets:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
