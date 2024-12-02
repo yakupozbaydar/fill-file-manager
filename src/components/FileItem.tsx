@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacityProps, View } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Dropdown } from "react-native-element-dropdown";
+import analytics from "@react-native-firebase/analytics";
 import { tw } from "@/utils/tw";
 import { File, useFileStore } from "@/store/useFileStore";
 import { useAppNavigation } from "@/hooks/useAppNavigation";
@@ -34,10 +35,17 @@ const useDropdownItems = (currentItem: File) => {
             ...currentItem,
             status: "open",
           });
+          void analytics().logEvent("file_opened", {
+            file_name: currentItem.fileName,
+          });
         } else {
           updateFile({
             ...currentItem,
             status: "closed",
+          });
+
+          void analytics().logEvent("file_closed", {
+            file_name: currentItem.fileName,
           });
         }
       },
