@@ -2594,14 +2594,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-async-storage/async-storage@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@react-native-async-storage/async-storage@npm:2.1.0"
+"@react-native-async-storage/async-storage@npm:1.23.1":
+  version: 1.23.1
+  resolution: "@react-native-async-storage/async-storage@npm:1.23.1"
   dependencies:
     merge-options: "npm:^3.0.4"
   peerDependencies:
-    react-native: ^0.0.0-0 || >=0.65 <1.0
-  checksum: 10c0/76a81a55059e93e256f6e9cf3f33a49d24ba83ce2f88e52343107953a66168c533bb387111a88708247c926297ee93c681c4936bcb66993dba78ea7fb28c9fdf
+    react-native: ^0.0.0-0 || >=0.60 <1.0
+  checksum: 10c0/6cfdcab91f0e04f80f4aa91397eb4aedcd1124bf2a997cb730c7f2c70dad75d2aa0ca0f41576ed4e34544a1f79e090169f566366c32a89a41b74bf74bea1c1db
   languageName: node
   linkType: hard
 
@@ -6003,7 +6003,7 @@ __metadata:
     "@babel/core": "npm:^7.26.0"
     "@expo/vector-icons": "npm:^14.0.2"
     "@papyonlab/eslint-config": "npm:^1.1.1"
-    "@react-native-async-storage/async-storage": "npm:^2.1.0"
+    "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@react-native-firebase/analytics": "npm:^21.6.1"
     "@react-native-firebase/app": "npm:^21.6.1"
     "@react-navigation/bottom-tabs": "npm:^7.0.14"
