@@ -1,20 +1,72 @@
-import {
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-} from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacityProps, View } from "react-native";
+import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Dropdown } from "react-native-element-dropdown";
 import { tw } from "@/utils/tw";
-import { File } from "@/store/useFileStore";
+import { File, useFileStore } from "@/store/useFileStore";
+import { useAppNavigation } from "@/hooks/useAppNavigation";
+import { rs } from "@/utils/screen";
 
 type Props = {
   file: File;
 } & TouchableOpacityProps;
 
+const useDropdownItems = (currentItem: File) => {
+  const navigation = useAppNavigation();
+  const { updateFile, setFileInput } = useFileStore();
+
+  return [
+    {
+      label: "Go to Detail",
+      onPress: () => {
+        setFileInput(currentItem);
+        navigation.navigate("FileStack", {
+          screen: "Detail",
+          params: { initialRouteName: "Info" },
+        });
+      },
+    },
+    {
+      label: currentItem.status === "closed" ? "Open File" : "Close File",
+      onPress: () => {
+        if (currentItem.status === "closed") {
+          updateFile({
+            ...currentItem,
+            status: "open",
+          });
+        } else {
+          updateFile({
+            ...currentItem,
+            status: "closed",
+          });
+        }
+      },
+    },
+    {
+      label: "Go to Tab A",
+      onPress: () => {
+        setFileInput(currentItem);
+        navigation.navigate("FileStack", {
+          screen: "Detail",
+          params: { initialRouteName: "TabA" },
+        });
+      },
+    },
+    {
+      label: "Go to Tab B",
+      onPress: () => {
+        setFileInput(currentItem);
+        navigation.navigate("FileStack", {
+          screen: "Detail",
+          params: { initialRouteName: "TabB" },
+        });
+      },
+    },
+  ];
+};
+
 export const FileItem = ({ file, ...rest }: Props) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const data = useDropdownItems(file);
 
   const containerClassName = [
     tw`mb-4 p-4 border-[1px] rounded-xl`,
@@ -30,17 +82,28 @@ export const FileItem = ({ file, ...rest }: Props) => {
           <Text className="text-base font-bold w-[60%]" numberOfLines={1}>
             {file.fileName}
           </Text>
+
+          {/* Just a tricky usage of Dropdown component
+          I have to declare that I think dropdown is not a good practice in mobile */}
           <View className="flex-row items-center">
-            <StatusBubble status={file.status} />
-            <TouchableOpacity
-              accessibilityRole="button"
-              onPress={() => {
-                setDropdownVisible(!dropdownVisible);
+            <Dropdown
+              data={data}
+              onFocus={() => {}}
+              onChange={(item) => {
+                item.onPress();
               }}
-              className="p-2 bg-primary/40 rounded-full ml-2"
-            >
-              <Ionicons name="ellipsis-vertical" size={20} />
-            </TouchableOpacity>
+              placeholderStyle={{
+                display: "none",
+              }}
+              renderRightIcon={() => (
+                <Ionicons name="ellipsis-vertical" size={24} />
+              )}
+              labelField={"label"}
+              valueField={"onPress"}
+              style={styles.dropdown}
+              containerStyle={styles.container}
+            />
+            <StatusBubble status={file.status} />
           </View>
         </View>
         <Text>
@@ -80,3 +143,11 @@ export const StatusBubble = ({ status }: { status: File["status"] }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  dropdown: {
+    width: rs(60),
+    alignItems: "flex-end",
+  },
+  container: { width: rs(150) },
+});

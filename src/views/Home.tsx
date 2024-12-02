@@ -95,9 +95,7 @@ export const Home = () => {
 
       <FlatList
         data={filteredFiles}
-        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
         renderItem={({ item }) => <FileItem file={item} />}
       />
 

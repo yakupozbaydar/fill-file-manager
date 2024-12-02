@@ -1980,6 +1980,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-picker/picker@npm:2.9.0":
+  version: 2.9.0
+  resolution: "@react-native-picker/picker@npm:2.9.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/a7b64b1073a2a31f2efdcdd767316312a55516c80f2f6a48f3110875f6029b82cf9067fbea1da3df2ee992233f8aed23928f39ee935ef80c9c20ce06bb836303
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.76.3":
   version: 0.76.3
   resolution: "@react-native/assets-registry@npm:0.76.3"
@@ -5312,6 +5322,7 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.2"
     "@papyonlab/eslint-config": "npm:^1.1.1"
     "@react-native-async-storage/async-storage": "npm:^2.1.0"
+    "@react-native-picker/picker": "npm:2.9.0"
     "@react-navigation/bottom-tabs": "npm:^7.0.14"
     "@react-navigation/material-top-tabs": "npm:^7.0.17"
     "@react-navigation/native": "npm:^7.0.9"
@@ -5331,6 +5342,7 @@ __metadata:
     nativewind: "npm:^2.0.11"
     react: "npm:18.3.1"
     react-native: "npm:0.76.3"
+    react-native-element-dropdown: "npm:^2.12.2"
     react-native-gesture-handler: "npm:~2.20.2"
     react-native-pager-view: "npm:6.5.1"
     react-native-paper: "npm:^5.12.5"
@@ -8739,6 +8751,18 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-native-element-dropdown@npm:^2.12.2":
+  version: 2.12.2
+  resolution: "react-native-element-dropdown@npm:2.12.2"
+  dependencies:
+    lodash: "npm:^4.17.21"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/af3ab395e3e11020ba9169743401ee3db39b6dcce3046d7f8d0b9195139460308d9159dfbc678b15816f5402b30e8321f5aced04a669fbcefb33986f80f002aa
   languageName: node
   linkType: hard
 

@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -65,12 +65,6 @@ export const Detail = () => {
 
           <View className="flex-row items-center">
             <StatusBubble status={fileInput?.status || "open"} />
-            <TouchableOpacity
-              accessibilityRole="button"
-              className="ml-2 p-2 bg-black/30 rounded-full"
-            >
-              <Ionicons name="share-social" size={24} color="white" />
-            </TouchableOpacity>
           </View>
         </View>
       </View>
