@@ -1,4 +1,4 @@
-import { Alert, Switch, Text, View } from "react-native";
+import { Alert, ScrollView, Switch, Text, View } from "react-native";
 import React from "react";
 import { LabeledInput } from "@/components/LabeledInput";
 import { FilterButton } from "@/components/FilterButton";
@@ -13,7 +13,7 @@ export const InfoTab = () => {
     useFileStore();
 
   return (
-    <View>
+    <ScrollView>
       <View className="border-[1px] border-black/10 rounded-xl mt-8 p-4 mx-4">
         {CREATE_FILE_INPUTS.map((input) => (
           <LabeledInput
@@ -119,6 +119,6 @@ export const InfoTab = () => {
           />
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 };
