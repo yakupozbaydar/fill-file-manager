@@ -74,6 +74,19 @@ export const useFileStore = create(
             },
           }));
         },
+
+        resetStore: () => {
+          set(() => ({
+            files: [],
+            fileInput: {
+              fileName: "",
+              description: "",
+              number: "",
+              fileType: "X",
+              status: "open",
+            },
+          }));
+        },
       }),
     ),
     {
