@@ -7,6 +7,7 @@ import { tw } from "@/utils/tw";
 import { File, useFileStore } from "@/store/useFileStore";
 import { useAppNavigation } from "@/hooks/useAppNavigation";
 import { rs } from "@/utils/screen";
+import { FIREBASE_EVENTS } from "@/constant/analytics";
 
 type Props = {
   file: File;
@@ -35,7 +36,7 @@ const useDropdownItems = (currentItem: File) => {
             ...currentItem,
             status: "open",
           });
-          void analytics().logEvent("file_opened", {
+          void analytics().logEvent(FIREBASE_EVENTS.FILE_OPENED, {
             file_name: currentItem.fileName,
           });
         } else {
@@ -44,7 +45,7 @@ const useDropdownItems = (currentItem: File) => {
             status: "closed",
           });
 
-          void analytics().logEvent("file_closed", {
+          void analytics().logEvent(FIREBASE_EVENTS.FILE_CLOSED, {
             file_name: currentItem.fileName,
           });
         }

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { combine, createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import analytics from "@react-native-firebase/analytics";
+import { FIREBASE_EVENTS } from "@/constant/analytics";
 
 export type File = {
   id: string;
@@ -38,7 +39,7 @@ export const useFileStore = create(
               },
             ],
           }));
-          void analytics().logEvent("file_added", { file });
+          void analytics().logEvent(FIREBASE_EVENTS.FILE_ADDED, { file });
         },
 
         updateFile: (updatedFile: File) => {
